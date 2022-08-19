@@ -1,6 +1,22 @@
 <script>
-export default {
+import { mapActions } from 'pinia'
+import { useAuthStore } from '@/stores/authStore.js'
 
+export default {
+    data() {
+        return {
+            dataLogin: {
+                email: '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+        ...mapActions(useAuthStore, ["login"]),
+        handleLogin() {
+            this.login(this.dataLogin)
+        }
+    }
 }
 </script>
 <template>
@@ -15,18 +31,19 @@ export default {
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3">
+                            <form class="pt-3" @submit.prevent="handleLogin">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Username">
+                                    <input type="email" v-model="dataLogin.email" class="form-control form-control-lg"
+                                        id="email" placeholder="E-mail Address">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" v-model="dataLogin.password"
+                                        class="form-control form-control-lg" id="password" placeholder="Password">
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="../../index.html">SIGN IN</a>
+                                    <button type="submit"
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
+                                        IN</button>
                                 </div>
                             </form>
                         </div>
