@@ -20,7 +20,6 @@ export const useProfileStore = defineStore({
                 })
 
                 this.profileUser = data.user
-                console.log(data);
             } catch (error) {
                 this.alertError(error)
             }
