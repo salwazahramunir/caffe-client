@@ -1,13 +1,21 @@
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useAuthStore } from '@/stores/authStore.js'
+import { useProfileStore } from '@/stores/profileStore.js'
 
 export default {
+    computed: {
+        ...mapState(useProfileStore, ["profileUser"])
+    },
     methods: {
         ...mapActions(useAuthStore, ["logout"]),
+        ...mapActions(useProfileStore, ["profileUserLogin"]),
         handleLogout() {
             this.logout()
         }
+    },
+    created() {
+        this.profileUserLogin()
     }
 }
 </script>
@@ -24,6 +32,14 @@ export default {
             </button>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
+                    <div class="d-flex">
+                        <div class="text-end m-3">
+                            <h6 id="username" class="mb-0 text-gray-600">{{ profileUser.username }}
+                            </h6>
+                            <p class="mb-0 text-sm text-gray-600" id="role">{{ profileUser.role }}
+                            </p>
+                        </div>
+                    </div>
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                         <img src="@/assets/images/faces/face28.jpg" alt="profile" />
                     </a>
