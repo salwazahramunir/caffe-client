@@ -54,6 +54,25 @@ export const useAuthStore = defineStore({
             } catch (error) {
                 this.alertError(error)
             }
+        },
+        logout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Are you sure you want to logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.clear()
+                    this.router.push({ name: 'login' })
+                    this.alertSuccess({
+                        message: "Logout Success"
+                    })
+                }
+            })
         }
     }
 })
