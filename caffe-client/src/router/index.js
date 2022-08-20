@@ -11,6 +11,7 @@ import RawMaterialList from '@/views/raw-material/RawMaterialList.vue'
 import RawMaterialForm from '@/views/raw-material/RawMaterialForm.vue'
 import RawMaterialDetail from '@/views/raw-material/RawMaterialDetail.vue'
 import MenuList from '@/views/menu/MenuList.vue'
+import MenuForm from '@/views/menu/MenuForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -83,6 +84,11 @@ const router = createRouter({
           path: 'menus',
           name: 'menus',
           component: MenuList
+        },
+        {
+          path: 'menus/create',
+          name: 'createMenu',
+          component: MenuForm
         },
       ]
     }

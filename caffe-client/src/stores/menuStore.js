@@ -52,6 +52,30 @@ export const useMenuStore = defineStore({
             } catch (error) {
                 this.alertError(error)
             }
+        },
+        async addMenu(obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "POST",
+                    url: "/menus",
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        name: obj.name,
+                        price: obj.price,
+                        category: obj.category,
+                        isConcoction: obj.isConcoction,
+                        isAvaiable: obj.isAvaiable,
+                        recipes: obj.recipes
+                    }
+                })
+
+                this.router.push({ name: "menus" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
         }
     }
 })
