@@ -7,7 +7,7 @@ export const useRawMaterialStore = defineStore({
     state: () => ({
         rawMaterials: {},
         theadRawMaterial: ["Name", "Quantity", "Sould Out"],
-        actionRawMaterial: [" ", "edit", "delete"],
+        actionRawMaterial: [" ", " ", "delete"],
         rawMaterialById: {}
     }),
     getters: {
@@ -52,6 +52,25 @@ export const useRawMaterialStore = defineStore({
             } catch (error) {
                 this.alertError(error)
             }
-        }
+        },
+        async addRawMaterial(obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "POST",
+                    url: "/raw-materials",
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        kitchen_store_id: obj.kitchen_store_id
+                    }
+                })
+
+                this.router.push({ name: "raw-materials" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            } 
+        },
     }
 })

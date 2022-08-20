@@ -8,6 +8,7 @@ import UserDetail from '@/views/user/UserDetail.vue'
 import KitchenStoreList from '@/views/kitchen-stores/KitchenStoreList.vue'
 import KitchenStoreForm from '@/views/kitchen-stores/KitchenStoreForm.vue'
 import RawMaterialList from '@/views/raw-material/RawMaterialList.vue'
+import RawMaterialForm from '@/views/raw-material/RawMaterialForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +66,11 @@ const router = createRouter({
           path: 'raw-materials',
           name: 'raw-materials',
           component: RawMaterialList
+        },
+        {
+          path: 'raw-materials/create',
+          name: 'createRawMaterial',
+          component: RawMaterialForm
         },
       ]
     }
