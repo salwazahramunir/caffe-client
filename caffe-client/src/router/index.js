@@ -3,6 +3,7 @@ import LoginPage from '@/views/LoginPage.vue'
 import Home from '@/views/Home.vue'
 import DashboardPage from '@/views/DashboardPage.vue'
 import UserList from '@/views/user/UserList.vue'
+import UserForm from '@/views/user/UserForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,11 @@ const router = createRouter({
           path: 'users',
           name: 'userList',
           component: UserList
+        },
+        {
+          path: 'users/create',
+          name: 'createUser',
+          component: UserForm
         }
       ]
     }

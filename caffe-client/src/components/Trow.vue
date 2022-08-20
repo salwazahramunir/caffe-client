@@ -35,7 +35,9 @@ export default {
                 <a @click.prevent="handleShow" class="btn btn-outline-info btn-sm"><i class="ti-eye"></i> Show</a>
             </span>
             <span v-if="action['1'] === 'edit'" class=" m-2">
-                <a @click.prevent="handleEdit" class="btn btn-outline-primary btn-sm"><i class="ti-pencil"></i> Edit</a>
+                <a @click.prevent="handleEdit" class="btn btn-outline-primary btn-sm" :page="edit"><i
+                        class="ti-pencil"></i>
+                    Edit</a>
             </span>
             <span v-if="action['2'] === 'delete'">
                 <a @click.prevent="handleDelete" class="btn btn-outline-danger btn-sm"><i class="ti-trash"></i>

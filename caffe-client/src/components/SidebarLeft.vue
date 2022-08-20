@@ -26,6 +26,9 @@ export default {
                         <li class="nav-item">
                             <RouterLink to="/users" class="nav-link">User List</RouterLink>
                         </li>
+                        <li class="nav-item">
+                            <RouterLink to="/users/create" class="nav-link">Add User</RouterLink>
+                        </li>
                     </ul>
                 </div>
             </li>
