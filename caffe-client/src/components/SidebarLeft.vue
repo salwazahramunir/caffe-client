@@ -15,19 +15,19 @@ export default {
                 </RouterLink>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                    aria-controls="ui-basic">
-                    <i class="icon-layout menu-icon"></i>
-                    <span class="menu-title">UI Elements</span>
+                <a class="nav-link" data-toggle="collapse" href="#usersMenu" aria-expanded="false"
+                    aria-controls="usersMenu">
+                    <i class="icon-head menu-icon"></i>
+                    <span class="menu-title">Users</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="usersMenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+                        <li class="nav-item">
+                            <RouterLink to="/users" class="nav-link">User List</RouterLink>
                         </li>
-                        <li class="nav-item"> <a class="nav-link"
-                                href="pages/ui-features/typography.html">Typography</a>
+                        <li class="nav-item">
+                            <RouterLink to="/users/create" class="nav-link">Add User</RouterLink>
                         </li>
                     </ul>
                 </div>
