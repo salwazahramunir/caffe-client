@@ -24,12 +24,17 @@ const router = createRouter({
         },
         {
           path: 'users',
-          name: 'userList',
+          name: 'users',
           component: UserList
         },
         {
           path: 'users/create',
           name: 'createUser',
+          component: UserForm
+        },
+        {
+          path: 'users/:id',
+          name: 'editUser',
           component: UserForm
         }
       ]

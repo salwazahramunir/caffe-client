@@ -7,7 +7,8 @@ export const useUserStore = defineStore({
     state: () => ({
         users: {},
         theadUser: ["Username", "Email Address", "Role"],
-        actionUser: ["show", "edit", "delete"]
+        actionUser: ["show", "edit", "delete"],
+        userById: {}
     }),
     getters: {
     },
@@ -74,5 +75,43 @@ export const useUserStore = defineStore({
                 this.alertError(error)
             }
         },
+        async editUserById(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "GET",
+                    url: `/users/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.userById = data.user
+                this.router.push({ name: "editUser", params: { id }})
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
+        async updateUser(id, obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "PUT",
+                    url: `/users/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        username: obj.username,
+                        email: obj.email,
+                        password: obj.password,
+                        role: obj.role
+                    }
+                })
+
+                this.router.push({ name: "users" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        }
     }
 })

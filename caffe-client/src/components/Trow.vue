@@ -16,6 +16,14 @@ export default {
             }
         }
     },
+    methods: {
+        ...mapActions(useUserStore, ["editUserById"]),
+        handleEdit() {
+            if (this.fullPath === "/users") {
+                this.editUserById(this.trow.id)
+            }
+        }
+    },
     created() {
         const { fullPath } = this.$route
         this.fullPath = fullPath
@@ -35,8 +43,7 @@ export default {
                 <a @click.prevent="handleShow" class="btn btn-outline-info btn-sm"><i class="ti-eye"></i> Show</a>
             </span>
             <span v-if="action['1'] === 'edit'" class=" m-2">
-                <a @click.prevent="handleEdit" class="btn btn-outline-primary btn-sm" :page="edit"><i
-                        class="ti-pencil"></i>
+                <a @click.prevent="handleEdit" class="btn btn-outline-primary btn-sm"><i class="ti-pencil"></i>
                     Edit</a>
             </span>
             <span v-if="action['2'] === 'delete'">

@@ -1,12 +1,12 @@
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 
 export default {
-    props: ["page"],
     data() {
         return {
+            fullPath: '',
             title: '',
             description: '',
             dataUser: {
@@ -17,19 +17,50 @@ export default {
             }
         }
     },
+    watch: {
+        "$route.fullPath"(value) {
+            if (value === "/users/create") {
+                const { fullPath } = this.$route
+                this.dataUser = {
+                    username: '',
+                    email: '',
+                    password: '',
+                    role: '0'
+                }
+
+                this.title = "Form Add User"
+                this.description = "Form Add User"
+                this.fullPath = fullPath
+            }
+        }
+    },
+    computed: {
+        ...mapState(useUserStore, ["userById"])
+    },
     methods: {
-        ...mapActions(useUserStore, ["addUser"]),
+        ...mapActions(useUserStore, ["addUser", "updateUser"]),
         createUpdate() {
-            this.addUser(this.dataUser)
+            if (this.fullPath === "/users/create") {
+                this.addUser(this.dataUser)
+            } else {
+                this.updateUser(this.userById.id, this.dataUser)
+            }
         }
     },
     created() {
-        if (this.page === 'edit') {
-            this.title = "Form Edit User"
-            this.description = "Form Edit User"
-        } else {
+        const { fullPath } = this.$route
+        this.fullPath = fullPath
+
+        if (this.fullPath === "/users/create") {
             this.title = "Form Add User"
             this.description = "Form Add User"
+        } else {
+            this.title = "Form Edit User"
+            this.description = "Form Edit User"
+
+            this.dataUser.username = this.userById.username
+            this.dataUser.email = this.userById.email
+            this.dataUser.role = this.userById.role
         }
     }
 }
@@ -59,11 +90,14 @@ export default {
                                 <label for="password">Password</label>
                                 <input type="password" v-model="dataUser.password" class="form-control" id="password"
                                     placeholder="Password">
+                                <small v-if="fullPath !== '/users/create'" style="color: red">leave it blank if you
+                                    don't want to change the
+                                    password</small>
                             </div>
                             <div class="form-group">
                                 <label for="role">Role</label>
-                                <select class="form-control" id="role" v-model="dataUser.role">
-                                    <option value="0">--- Select One ---</option>
+                                <select class="form-control" id="role" v-model="dataUser.role" style="color: black">
+                                    <option value="0" disabled>--- Select One ---</option>
                                     <option value="Owner">Owner</option>
                                     <option value="Admin">Admin</option>
                                     <option value="Cashier">Cashier</option>
