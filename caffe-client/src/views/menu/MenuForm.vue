@@ -54,11 +54,13 @@ export default {
         ...mapState(useRawMaterialStore, ["rawMaterials"])
     },
     methods: {
-        ...mapActions(useMenuStore, ["addMenu"]),
+        ...mapActions(useMenuStore, ["addMenu", "UpdateMenu"]),
         ...mapActions(useRawMaterialStore, ["readAllRawMaterial"]),
         createUpdate() {
             if (this.fullPath === "/menus/create") {
                 this.addMenu(this.dataMenu)
+            } else {
+                this.UpdateMenu(this.menuById.id, this.dataMenu)
             }
         },
         chooseCategory(event) {
@@ -89,6 +91,15 @@ export default {
         } else {
             this.title = "Form Edit Menu"
             this.description = "Form Edit Menu"
+
+            this.dataMenu.name = this.menuById.name
+            this.dataMenu.price = this.menuById.price
+            this.dataMenu.category = this.menuById.category
+            this.dataMenu.isConcoction = this.menuById.isConcoction
+            this.dataMenu.recipes = this.menuById.DrinkConcoctions
+            this.dataMenu.isAvaiable = this.menuById.isAvaiable
+
+            this.readAllRawMaterial()
         }
     }
 }
@@ -116,21 +127,24 @@ export default {
                             </div>
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select id="category" name="category" class="form-control" v-model="dataMenu.category"
-                                    style="color: black" @change="chooseCategory($event)">
+                                <select id="category" v-if="fullPath === '/menus/create'" name="category"
+                                    class="form-control" v-model="dataMenu.category" style="color: black"
+                                    @change="chooseCategory($event)">
                                     <option selected value="0" disabled>--- Select One ---</option>
                                     <option value="Food">Food</option>
                                     <option value="Drink">Drink</option>
                                 </select>
+                                <input v-else type="text" :value="dataMenu.category" class="form-control" disabled>
                             </div>
                             <div v-if="dataMenu.category === 'Drink'" class="form-group">
                                 <label for="isConcoction">Concoction</label>
-                                <select id="isConcoction" name="isConcoction" class="form-control" style="color: black"
-                                    v-model="dataMenu.isConcoction">
+                                <select v-if="fullPath === '/menus/create'" id="isConcoction" name="isConcoction"
+                                    class="form-control" style="color: black" v-model="dataMenu.isConcoction">
                                     <option selected value="0" disabled>--- Select One ---</option>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
+                                <input v-else type="text" :value="dataMenu.isConcoction" class="form-control" disabled>
                             </div>
                             <div
                                 v-if="dataMenu.isConcoction === true || dataMenu.isConcoction === 'true' && dataMenu.category === 'Drink'">

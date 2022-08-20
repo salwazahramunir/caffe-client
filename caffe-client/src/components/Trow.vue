@@ -29,12 +29,15 @@ export default {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
+        ...mapActions(useMenuStore, ["editMenuById"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
                 this.editUserById(this.trow.id)
             } else if (this.fullPath === "/kitchen-stores") {
                 this.editKitchenStoreById(this.trow.id)
+            } else if (this.fullPath === "/menus") {
+                this.editMenuById(this.trow.id)
             }
         },
         handleShow() {

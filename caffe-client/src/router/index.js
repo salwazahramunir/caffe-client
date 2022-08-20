@@ -90,6 +90,11 @@ const router = createRouter({
           name: 'createMenu',
           component: MenuForm
         },
+        {
+          path: 'menus/:id',
+          name: 'editMenu',
+          component: MenuForm
+        },
       ]
     }
   ]
