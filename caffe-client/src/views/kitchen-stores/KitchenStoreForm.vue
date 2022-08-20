@@ -19,13 +19,13 @@ export default {
     },
     watch: {
         "$route.fullPath"(value) {
-            if (value === "/kicthen-stores/create") {
+            if (value === "/kitchen-stores/create") {
                 const { fullPath } = this.$route
                 this.dataKitchenStore = {
                     name: '',
                     stock: '',
                     quantity: '',
-                    unit: '0'
+                    unit: 'Mililiter'
                 }
 
                 this.title = "Form Add Kitchen Store"
@@ -35,13 +35,15 @@ export default {
         }
     },
     computed: {
-        ...mapState(useKitchenStore, ["userById"])
+        ...mapState(useKitchenStore, ["kitchenStoreById"])
     },
     methods: {
-        ...mapActions(useKitchenStore, ["addKitchenStore"]),
+        ...mapActions(useKitchenStore, ["addKitchenStore", "updateKitchenStore"]),
         createUpdate() {
             if (this.fullPath === "/kitchen-stores/create") {
                 this.addKitchenStore(this.dataKitchenStore)
+            } else {
+                this.updateKitchenStore(this.kitchenStoreById.id, this.dataKitchenStore)
             }
         }
     },
@@ -56,9 +58,10 @@ export default {
             this.title = "Form Edit Kitchen Store"
             this.description = "Form Edit Kitchen Store"
 
-            this.dataKitchenStore.name = this.userById.name
-            this.dataKitchenStore.stock = this.userById.stock
-            this.dataKitchenStore.unit = this.userById.unit
+            this.dataKitchenStore.name = this.kitchenStoreById.name
+            this.dataKitchenStore.stock = this.kitchenStoreById.stock
+            this.dataKitchenStore.quantity = this.kitchenStoreById.quantity
+            this.dataKitchenStore.unit = this.kitchenStoreById.unit
         }
     }
 }

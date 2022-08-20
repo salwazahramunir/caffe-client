@@ -1,6 +1,7 @@
 <script>
 import { mapActions } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
+import { useKitchenStore } from '@/stores/kitchenStore'
 
 export default {
     props: ["trow", "action"],
@@ -20,9 +21,13 @@ export default {
     },
     methods: {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
+        ...mapActions(useKitchenStore, ["editKitchenStoreById"]),
+
         handleEdit() {
             if (this.fullPath === "/users") {
                 this.editUserById(this.trow.id)
+            } else if (this.fullPath === "/kitchen-stores") {
+                this.editKitchenStoreById(this.trow.id)
             }
         },
         handleShow() {

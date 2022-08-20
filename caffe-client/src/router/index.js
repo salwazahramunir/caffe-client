@@ -55,6 +55,11 @@ const router = createRouter({
           name: 'createKitchenStore',
           component: KitchenStoreForm
         },
+        {
+          path: 'kitchen-stores/:id',
+          name: 'editKitchenStore',
+          component: KitchenStoreForm
+        },
       ]
     }
   ]

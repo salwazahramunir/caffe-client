@@ -74,6 +74,44 @@ export const useKitchenStore = defineStore({
             } catch (error) {
                 this.alertError(error)
             }
+        },
+        async editKitchenStoreById(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "GET",
+                    url: `/kitchen-stores/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.kitchenStoreById = data.kitchenStore
+                this.router.push({ name: "editKitchenStore", params: { id }})
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
+        async updateKitchenStore(id, obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "PUT",
+                    url: `/kitchen-stores/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        name: obj.name,
+                        quantity: obj.quantity,
+                        unit: obj.unit,
+                        stock: obj.stock
+                    }
+                })
+
+                this.router.push({ name: "kitchen-stores" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
         }
     }
 })
