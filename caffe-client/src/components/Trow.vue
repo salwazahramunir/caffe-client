@@ -13,6 +13,8 @@ export default {
         columnNames() {
             if (this.fullPath === '/users') {
                 return ["username", "email", "role"]
+            } else if (this.fullPath === '/kitchen-stores') {
+                return ["name", "stock", "quantity", "unit"]
             }
         }
     },

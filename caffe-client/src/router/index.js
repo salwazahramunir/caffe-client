@@ -5,6 +5,7 @@ import DashboardPage from '@/views/DashboardPage.vue'
 import UserList from '@/views/user/UserList.vue'
 import UserForm from '@/views/user/UserForm.vue'
 import UserDetail from '@/views/user/UserDetail.vue'
+import KitchenStoreList from '@/views/kitchen-stores/KitchenStoreList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,7 +43,12 @@ const router = createRouter({
           path: 'users/:id',
           name: 'showUser',
           component: UserDetail
-        }
+        },
+        {
+          path: 'kitchen-stores',
+          name: 'kitchen-stores',
+          component: KitchenStoreList
+        },
       ]
     }
   ]
