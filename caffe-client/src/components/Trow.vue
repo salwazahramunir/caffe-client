@@ -25,6 +25,7 @@ export default {
     methods: {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
+        ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -36,6 +37,8 @@ export default {
         handleShow() {
             if (this.fullPath === "/users") {
                 this.showUser(this.trow.id)
+            } else if (this.fullPath === "/raw-materials") {
+                this.showRawMaterial(this.trow.id)
             }
         },
         handleDelete() {
