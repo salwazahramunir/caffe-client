@@ -5,6 +5,7 @@ import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
+import { useMenuStore } from '@/stores/menuStore'
 
 export default {
     data() {
@@ -20,6 +21,7 @@ export default {
         ...mapState(useUserStore, ["users", "theadUser", "actionUser"]),
         ...mapState(useKitchenStore, ["kitchenStores", "theadKitchenStore", "actionKitchenStore"]),
         ...mapState(useRawMaterialStore, ["rawMaterials", "theadRawMaterial", "actionRawMaterial"]),
+        ...mapState(useMenuStore, ["menus", "theadMenu", "actionMenu"]),
 
         trowData() {
             if (this.fullPath === "/users") {
@@ -28,6 +30,8 @@ export default {
                 return this.kitchenStores
             } else if (this.fullPath === "/raw-materials") {
                 return this.rawMaterials
+            } else if (this.fullPath === "/menus") {
+                return this.menus
             }
         },
         theadData() {
@@ -37,6 +41,8 @@ export default {
                 return this.theadKitchenStore
             } else if (this.fullPath === "/raw-materials") {
                 return this.theadRawMaterial
+            } else if (this.fullPath === "/menus") {
+                return this.theadMenu
             }
         },
         actionData() {
@@ -46,13 +52,16 @@ export default {
                 return this.actionKitchenStore
             } else if (this.fullPath === "/raw-materials") {
                 return this.actionRawMaterial
+            } else if (this.fullPath === "/menus") {
+                return this.actionMenu
             }
         },
     },
     methods: {
         ...mapActions(useUserStore, ["readAllUser"]),
         ...mapActions(useKitchenStore, ["readAllKitchenStore"]),
-        ...mapActions(useRawMaterialStore, ["readAllRawMaterial"])
+        ...mapActions(useRawMaterialStore, ["readAllRawMaterial"]),
+        ...mapActions(useMenuStore, ["readAllMenu"])
     },
     created() {
         const { fullPath } = this.$route
@@ -63,6 +72,8 @@ export default {
             this.readAllKitchenStore()
         } else if (fullPath === '/raw-materials') {
             this.readAllRawMaterial()
+        } else if (fullPath === '/menus') {
+            this.readAllMenu()
         }
     }
 }

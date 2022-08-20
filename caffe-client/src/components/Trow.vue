@@ -3,6 +3,7 @@ import { mapActions } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
+import { useMenuStore } from '@/stores/menuStore'
 
 export default {
     props: ["trow", "action"],
@@ -19,6 +20,8 @@ export default {
                 return ["name", "stock", "quantity", "unit"]
             } else if (this.fullPath === '/raw-materials') {
                 return ["nameKitchenStore", "quantity", "souldOut"]
+            } else if (this.fullPath === '/menus') {
+                return ["name", "price", "category", "isAvaiable"]
             }
         }
     },
