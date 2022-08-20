@@ -2,6 +2,7 @@
 import { mapActions } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
+import { useRawMaterialStore } from '@/stores/rawMaterialStore'
 
 export default {
     props: ["trow", "action"],
@@ -16,12 +17,15 @@ export default {
                 return ["username", "email", "role"]
             } else if (this.fullPath === '/kitchen-stores') {
                 return ["name", "stock", "quantity", "unit"]
+            } else if (this.fullPath === '/raw-materials') {
+                return ["nameKitchenStore", "quantity", "souldOut"]
             }
         }
     },
     methods: {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
+        ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -33,6 +37,8 @@ export default {
         handleShow() {
             if (this.fullPath === "/users") {
                 this.showUser(this.trow.id)
+            } else if (this.fullPath === "/raw-materials") {
+                this.showRawMaterial(this.trow.id)
             }
         },
         handleDelete() {
@@ -53,7 +59,8 @@ export default {
     <tr>
         <td>#</td>
         <td v-for="(td, idx) in columnNames" :key="idx">
-            <p>
+            <p v-if="'nameKitchenStore' === td">{{ trow.KitchenStore.name }}</p>
+            <p v-else>
                 {{ trow[td] }}
             </p>
         </td>
