@@ -52,6 +52,28 @@ export const useKitchenStore = defineStore({
             } catch (error) {
                 this.alertError(error)
             }
+        },
+        async addKitchenStore(obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "POST",
+                    url: "/kitchen-stores",
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        name: obj.name,
+                        quantity: obj.quantity,
+                        unit: obj.unit,
+                        stock: obj.stock
+                    }
+                })
+
+                this.router.push({ name: "kitchen-stores" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
         }
     }
 })
