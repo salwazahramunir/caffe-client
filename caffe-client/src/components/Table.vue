@@ -4,6 +4,7 @@ import Trow from '@/components/Trow.vue'
 import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
+import { useRawMaterialStore } from '@/stores/rawMaterialStore'
 
 export default {
     data() {
@@ -18,12 +19,15 @@ export default {
     computed: {
         ...mapState(useUserStore, ["users", "theadUser", "actionUser"]),
         ...mapState(useKitchenStore, ["kitchenStores", "theadKitchenStore", "actionKitchenStore"]),
+        ...mapState(useRawMaterialStore, ["rawMaterials", "theadRawMaterial", "actionRawMaterial"]),
 
         trowData() {
             if (this.fullPath === "/users") {
                 return this.users
             } else if (this.fullPath === "/kitchen-stores") {
                 return this.kitchenStores
+            } else if (this.fullPath === "/raw-materials") {
+                return this.rawMaterials
             }
         },
         theadData() {
@@ -31,6 +35,8 @@ export default {
                 return this.theadUser
             } else if (this.fullPath === "/kitchen-stores") {
                 return this.theadKitchenStore
+            } else if (this.fullPath === "/raw-materials") {
+                return this.theadRawMaterial
             }
         },
         actionData() {
@@ -38,12 +44,15 @@ export default {
                 return this.actionUser
             } else if (this.fullPath === "/kitchen-stores") {
                 return this.actionKitchenStore
+            } else if (this.fullPath === "/raw-materials") {
+                return this.actionRawMaterial
             }
         },
     },
     methods: {
         ...mapActions(useUserStore, ["readAllUser"]),
-        ...mapActions(useKitchenStore, ["readAllKitchenStore"])
+        ...mapActions(useKitchenStore, ["readAllKitchenStore"]),
+        ...mapActions(useRawMaterialStore, ["readAllRawMaterial"])
     },
     created() {
         const { fullPath } = this.$route
@@ -52,6 +61,8 @@ export default {
             this.readAllUser()
         } else if (fullPath === '/kitchen-stores') {
             this.readAllKitchenStore()
+        } else if (fullPath === '/raw-materials') {
+            this.readAllRawMaterial()
         }
     }
 }

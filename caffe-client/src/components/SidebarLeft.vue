@@ -50,6 +50,24 @@ export default {
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#rawMaterialsMenu" aria-expanded="false"
+                    aria-controls="rawMaterialsMenu">
+                    <i class="ti-home menu-icon"></i>
+                    <span class="menu-title">Raw Materials</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="rawMaterialsMenu">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <RouterLink to="/raw-materials" class="nav-link">Raw Material List</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/raw-materials/create" class="nav-link">Add Raw Material</RouterLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </nav>
 </template>
