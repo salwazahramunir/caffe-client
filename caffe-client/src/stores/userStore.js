@@ -112,6 +112,22 @@ export const useUserStore = defineStore({
             } catch (error) {
                 this.alertError(error)
             }
-        }
+        },
+        async showUser(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "GET",
+                    url: `/users/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.userById = data.user
+                this.router.push({ name: "showUser", params: { id }})
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
     }
 })

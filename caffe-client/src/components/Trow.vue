@@ -17,10 +17,15 @@ export default {
         }
     },
     methods: {
-        ...mapActions(useUserStore, ["editUserById"]),
+        ...mapActions(useUserStore, ["editUserById", "showUser"]),
         handleEdit() {
             if (this.fullPath === "/users") {
                 this.editUserById(this.trow.id)
+            }
+        },
+        handleShow() {
+            if (this.fullPath === "/users") {
+                this.showUser(this.trow.id)
             }
         }
     },
