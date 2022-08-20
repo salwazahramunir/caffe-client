@@ -17,7 +17,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(useUserStore, ["editUserById", "showUser"]),
+        ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         handleEdit() {
             if (this.fullPath === "/users") {
                 this.editUserById(this.trow.id)
@@ -26,6 +26,11 @@ export default {
         handleShow() {
             if (this.fullPath === "/users") {
                 this.showUser(this.trow.id)
+            }
+        },
+        handleDelete() {
+            if (this.fullPath === "/users") {
+                this.deleteUser(this.trow.id)
             }
         }
     },

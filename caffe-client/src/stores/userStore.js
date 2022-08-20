@@ -129,5 +129,22 @@ export const useUserStore = defineStore({
                 this.alertError(error)
             }
         },
+        async deleteUser(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "DELETE",
+                    url: `/users/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.router.push({ name: "users" })
+                this.readAllUser()
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        }
     }
 })
