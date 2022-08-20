@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
-        ...mapActions(useKitchenStore, ["editKitchenStoreById"]),
+        ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -38,6 +38,8 @@ export default {
         handleDelete() {
             if (this.fullPath === "/users") {
                 this.deleteUser(this.trow.id)
+            } else if (this.fullPath === "/kitchen-stores") {
+                this.deleteKitchenStore(this.trow.id)
             }
         }
     },

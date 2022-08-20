@@ -7,7 +7,7 @@ export const useKitchenStore = defineStore({
     state: () => ({
         kitchenStores: {},
         theadKitchenStore: ["Name", "Stock", "Quantity", "Unit"],
-        actionKitchenStore: ["show", "edit", "delete"],
+        actionKitchenStore: [" ", "edit", "delete"],
         kitchenStoreById: {}
     }),
     getters: {
@@ -108,6 +108,23 @@ export const useKitchenStore = defineStore({
                 })
 
                 this.router.push({ name: "kitchen-stores" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
+        async deleteKitchenStore(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "DELETE",
+                    url: `/kitchen-stores/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.router.push({ name: "kitchen-stores" })
+                this.readAllKitchenStore()
                 this.alertSuccess(data)
             } catch (error) {
                 this.alertError(error)
