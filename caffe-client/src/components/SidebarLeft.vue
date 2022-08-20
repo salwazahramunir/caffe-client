@@ -32,6 +32,24 @@ export default {
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#kitchenStoresMenu" aria-expanded="false"
+                    aria-controls="kitchenStoresMenu">
+                    <i class="ti-home menu-icon"></i>
+                    <span class="menu-title">Kitchen Stores</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="kitchenStoresMenu">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <RouterLink to="/kitchen-stores" class="nav-link">Kitchen Store List</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/kitchen-stores/create" class="nav-link">Add Kitchen Store</RouterLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </nav>
 </template>

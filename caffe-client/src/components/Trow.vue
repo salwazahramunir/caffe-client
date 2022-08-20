@@ -1,6 +1,7 @@
 <script>
 import { mapActions } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
+import { useKitchenStore } from '@/stores/kitchenStore'
 
 export default {
     props: ["trow", "action"],
@@ -13,14 +14,20 @@ export default {
         columnNames() {
             if (this.fullPath === '/users') {
                 return ["username", "email", "role"]
+            } else if (this.fullPath === '/kitchen-stores') {
+                return ["name", "stock", "quantity", "unit"]
             }
         }
     },
     methods: {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
+        ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
+
         handleEdit() {
             if (this.fullPath === "/users") {
                 this.editUserById(this.trow.id)
+            } else if (this.fullPath === "/kitchen-stores") {
+                this.editKitchenStoreById(this.trow.id)
             }
         },
         handleShow() {
@@ -31,6 +38,8 @@ export default {
         handleDelete() {
             if (this.fullPath === "/users") {
                 this.deleteUser(this.trow.id)
+            } else if (this.fullPath === "/kitchen-stores") {
+                this.deleteKitchenStore(this.trow.id)
             }
         }
     },
