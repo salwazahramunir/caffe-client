@@ -86,6 +86,24 @@ export default {
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#roomsMenu" aria-expanded="false"
+                    aria-controls="roomsMenu">
+                    <i class="ti-home menu-icon"></i>
+                    <span class="menu-title">Rooms</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="roomsMenu">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <RouterLink to="/rooms" class="nav-link">Room List</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/rooms/create" class="nav-link">Add Room</RouterLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </nav>
 </template>

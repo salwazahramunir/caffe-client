@@ -22,6 +22,8 @@ export default {
                 return ["nameKitchenStore", "quantity", "souldOut"]
             } else if (this.fullPath === '/menus') {
                 return ["name", "price", "category", "isAvaiable"]
+            } else if (this.fullPath === '/rooms') {
+                return ["codeRoom", "nameRoom", "category", "isEmpty"]
             }
         }
     },

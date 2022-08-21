@@ -13,6 +13,7 @@ import RawMaterialDetail from '@/views/raw-material/RawMaterialDetail.vue'
 import MenuList from '@/views/menu/MenuList.vue'
 import MenuForm from '@/views/menu/MenuForm.vue'
 import MenuDetail from '@/views/menu/MenuDetail.vue'
+import RoomList from '@/views/room/RoomList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -100,6 +101,11 @@ const router = createRouter({
           path: 'menus/:id',
           name: 'showMenu',
           component: MenuDetail
+        },
+        {
+          path: 'rooms',
+          name: 'rooms',
+          component: RoomList
         },
       ]
     }
