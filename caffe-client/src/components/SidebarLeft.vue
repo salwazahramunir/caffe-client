@@ -104,6 +104,24 @@ export default {
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#transactionsMenu" aria-expanded="false"
+                    aria-controls="transactionsMenu">
+                    <i class="ti-credit-card menu-icon"></i>
+                    <span class="menu-title">Transactions</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="transactionsMenu">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <RouterLink to="/transactions" class="nav-link">Transaction List</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/transactions/create" class="nav-link">Add Transaction</RouterLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </nav>
 </template>

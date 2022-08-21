@@ -5,6 +5,7 @@ import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
 import { useMenuStore } from '@/stores/menuStore'
 import { useRoomStore } from '@/stores/roomStore'
+import { useTransactionStore } from '@/stores/transactionStore'
 
 export default {
     props: ["trow", "action"],
@@ -25,6 +26,8 @@ export default {
                 return ["name", "price", "category", "isAvaiable"]
             } else if (this.fullPath === '/rooms') {
                 return ["codeRoom", "nameRoom", "category", "isEmpty"]
+            } else if (this.fullPath === '/transactions') {
+                return ["invoice", "customerName", "totalBill", "date"]
             }
         }
     },
