@@ -131,5 +131,22 @@ export const useMenuStore = defineStore({
                 this.alertError(error)
             }
         },
+        async deleteMenu(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "DELETE",
+                    url: `/menus/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.router.push({ name: "menus" })
+                this.readAllMenu()
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        }
     }
 })

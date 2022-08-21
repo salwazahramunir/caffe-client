@@ -29,7 +29,7 @@ export default {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
-        ...mapActions(useMenuStore, ["editMenuById", "showMenu"]),
+        ...mapActions(useMenuStore, ["editMenuById", "showMenu", "deleteMenu"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -54,6 +54,8 @@ export default {
                 this.deleteUser(this.trow.id)
             } else if (this.fullPath === "/kitchen-stores") {
                 this.deleteKitchenStore(this.trow.id)
+            } else if (this.fullPath === "/menus") {
+                this.deleteMenu(this.trow.id)
             }
         }
     },
