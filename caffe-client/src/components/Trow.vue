@@ -3,6 +3,7 @@ import { mapActions } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
+import { useMenuStore } from '@/stores/menuStore'
 
 export default {
     props: ["trow", "action"],
@@ -19,6 +20,8 @@ export default {
                 return ["name", "stock", "quantity", "unit"]
             } else if (this.fullPath === '/raw-materials') {
                 return ["nameKitchenStore", "quantity", "souldOut"]
+            } else if (this.fullPath === '/menus') {
+                return ["name", "price", "category", "isAvaiable"]
             }
         }
     },
@@ -26,12 +29,15 @@ export default {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
+        ...mapActions(useMenuStore, ["editMenuById", "showMenu", "deleteMenu"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
                 this.editUserById(this.trow.id)
             } else if (this.fullPath === "/kitchen-stores") {
                 this.editKitchenStoreById(this.trow.id)
+            } else if (this.fullPath === "/menus") {
+                this.editMenuById(this.trow.id)
             }
         },
         handleShow() {
@@ -39,6 +45,8 @@ export default {
                 this.showUser(this.trow.id)
             } else if (this.fullPath === "/raw-materials") {
                 this.showRawMaterial(this.trow.id)
+            } else if (this.fullPath === "/menus") {
+                this.showMenu(this.trow.id)
             }
         },
         handleDelete() {
@@ -46,6 +54,8 @@ export default {
                 this.deleteUser(this.trow.id)
             } else if (this.fullPath === "/kitchen-stores") {
                 this.deleteKitchenStore(this.trow.id)
+            } else if (this.fullPath === "/menus") {
+                this.deleteMenu(this.trow.id)
             }
         }
     },

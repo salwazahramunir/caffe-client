@@ -68,6 +68,24 @@ export default {
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#menusMenu" aria-expanded="false"
+                    aria-controls="menusMenu">
+                    <i class="ti-home menu-icon"></i>
+                    <span class="menu-title">Menus</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="menusMenu">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <RouterLink to="/menus" class="nav-link">Menu List</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/menus/create" class="nav-link">Add Menu</RouterLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </nav>
 </template>
