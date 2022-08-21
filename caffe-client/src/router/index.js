@@ -16,6 +16,7 @@ import MenuDetail from '@/views/menu/MenuDetail.vue'
 import RoomList from '@/views/room/RoomList.vue'
 import RoomForm from '@/views/room/RoomForm.vue'
 import RoomDetail from '@/views/room/RoomDetail.vue'
+import TransactionList from '@/views/transaction/TransactionList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -123,6 +124,11 @@ const router = createRouter({
           path: 'rooms/:id',
           name: 'showRoom',
           component: RoomDetail
+        },
+        {
+          path: 'transactions',
+          name: 'transactions',
+          component: TransactionList
         },
       ]
     }

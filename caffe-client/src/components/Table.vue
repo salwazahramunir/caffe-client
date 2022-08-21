@@ -7,6 +7,7 @@ import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
 import { useMenuStore } from '@/stores/menuStore'
 import { useRoomStore } from '@/stores/roomStore'
+import { useTransactionStore } from '@/stores/transactionStore'
 
 export default {
     data() {
@@ -24,6 +25,7 @@ export default {
         ...mapState(useRawMaterialStore, ["rawMaterials", "theadRawMaterial", "actionRawMaterial"]),
         ...mapState(useMenuStore, ["menus", "theadMenu", "actionMenu"]),
         ...mapState(useRoomStore, ["rooms", "theadRoom", "actionRoom"]),
+        ...mapState(useTransactionStore, ["transactions", "theadTransaction", "actionTransaction"]),
 
         trowData() {
             if (this.fullPath === "/users") {
@@ -36,6 +38,8 @@ export default {
                 return this.menus
             } else if (this.fullPath === "/rooms") {
                 return this.rooms
+            } else if (this.fullPath === "/transactions") {
+                return this.transactions
             }
         },
         theadData() {
@@ -49,6 +53,8 @@ export default {
                 return this.theadMenu
             } else if (this.fullPath === "/rooms") {
                 return this.theadRoom
+            } else if (this.fullPath === "/transactions") {
+                return this.theadTransaction
             }
         },
         actionData() {
@@ -62,6 +68,8 @@ export default {
                 return this.actionMenu
             } else if (this.fullPath === "/rooms") {
                 return this.actionRoom
+            } else if (this.fullPath === "/transactions") {
+                return this.actionTransaction
             }
         },
     },
@@ -70,7 +78,8 @@ export default {
         ...mapActions(useKitchenStore, ["readAllKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["readAllRawMaterial"]),
         ...mapActions(useMenuStore, ["readAllMenu"]),
-        ...mapActions(useRoomStore, ["readAllRoom"])
+        ...mapActions(useRoomStore, ["readAllRoom"]),
+        ...mapActions(useTransactionStore, ["readAllTransaction"])
     },
     created() {
         const { fullPath } = this.$route
@@ -85,6 +94,8 @@ export default {
             this.readAllMenu()
         } else if (fullPath === '/rooms') {
             this.readAllRoom()
+        } else if (fullPath === '/transactions') {
+            this.readAllTransaction()
         }
     }
 }
