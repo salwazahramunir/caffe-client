@@ -6,7 +6,7 @@ export const useRoomStore = defineStore({
     id: 'roomStore',
     state: () => ({
         rooms: {},
-        theadRoom: ["Code Room", "Name Room", "Category", "Avaiable"],
+        theadRoom: ["Code Room", "Name Room", "Category", "Empty"],
         actionRoom: ["show", "edit", "delete"],
         roomById: {}
     }),
@@ -112,6 +112,22 @@ export const useRoomStore = defineStore({
 
                 this.router.push({ name: "rooms" })
                 this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
+        async showRoom(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "GET",
+                    url: `/rooms/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.roomById = data.room
+                this.router.push({ name: "showRoom", params: { id }})
             } catch (error) {
                 this.alertError(error)
             }

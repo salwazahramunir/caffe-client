@@ -33,7 +33,7 @@ export default {
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
         ...mapActions(useMenuStore, ["editMenuById", "showMenu", "deleteMenu"]),
-        ...mapActions(useRoomStore, ["editRoomById"]),
+        ...mapActions(useRoomStore, ["editRoomById", "showRoom"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -53,6 +53,8 @@ export default {
                 this.showRawMaterial(this.trow.id)
             } else if (this.fullPath === "/menus") {
                 this.showMenu(this.trow.id)
+            } else if (this.fullPath === "/rooms") {
+                this.showRoom(this.trow.id)
             }
         },
         handleDelete() {
