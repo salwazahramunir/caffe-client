@@ -53,5 +53,28 @@ export const useRoomStore = defineStore({
                 this.alertError(error)
             }
         },
+        async addRoom(obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "POST",
+                    url: "/rooms",
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        codeRoom: obj.codeRoom,
+                        nameRoom: obj.nameRoom,
+                        category: obj.category,
+                        price: obj.price,
+                        duration: obj.duration
+                    }
+                })
+
+                this.router.push({ name: "rooms" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
     }
 })

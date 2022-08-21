@@ -14,6 +14,7 @@ import MenuList from '@/views/menu/MenuList.vue'
 import MenuForm from '@/views/menu/MenuForm.vue'
 import MenuDetail from '@/views/menu/MenuDetail.vue'
 import RoomList from '@/views/room/RoomList.vue'
+import RoomForm from '@/views/room/RoomForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -106,6 +107,11 @@ const router = createRouter({
           path: 'rooms',
           name: 'rooms',
           component: RoomList
+        },
+        {
+          path: 'rooms/create',
+          name: 'createRoom',
+          component: RoomForm
         },
       ]
     }
