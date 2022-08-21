@@ -76,5 +76,45 @@ export const useRoomStore = defineStore({
                 this.alertError(error)
             }
         },
+        async editRoomById(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "GET",
+                    url: `/rooms/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.roomById = data.room
+                this.router.push({ name: "editRoom", params: { id }})
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
+        async updateRoom(id, obj) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "PUT",
+                    url: `/rooms/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    },
+                    data: {
+                        codeRoom: obj.codeRoom,
+                        nameRoom: obj.nameRoom,
+                        category: obj.category,
+                        price: obj.price,
+                        duration: obj.duration,
+                        isEmpty: obj.isEmpty
+                    }
+                })
+
+                this.router.push({ name: "rooms" })
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
     }
 })

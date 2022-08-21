@@ -26,10 +26,10 @@ export default {
                 this.dataRoom = {
                     codeRoom: '',
                     nameRoom: '',
-                    category: '',
-                    price: '0',
+                    category: '0',
+                    price: '',
                     duration: '',
-                    isEmpty: '0'
+                    isEmpty: 'true'
                 }
 
                 this.title = "Form Add Room"
@@ -42,10 +42,12 @@ export default {
         ...mapState(useRoomStore, ["roomById"])
     },
     methods: {
-        ...mapActions(useRoomStore, ["addRoom"]),
+        ...mapActions(useRoomStore, ["addRoom", "updateRoom"]),
         createUpdate() {
             if (this.fullPath === "/rooms/create") {
                 this.addRoom(this.dataRoom)
+            } else {
+                this.updateRoom(this.roomById.id, this.dataRoom)
             }
         }
     },
@@ -63,6 +65,9 @@ export default {
             this.dataRoom.codeRoom = this.roomById.codeRoom
             this.dataRoom.nameRoom = this.roomById.nameRoom
             this.dataRoom.price = this.roomById.price
+            this.dataRoom.duration = this.roomById.duration
+            this.dataRoom.category = this.roomById.category
+            this.dataRoom.isEmpty = this.roomById.isEmpty
         }
     }
 }
@@ -97,6 +102,7 @@ export default {
                                 <label for="duration">Duration</label>
                                 <input type="number" v-model="dataRoom.duration" class="form-control" id="duration"
                                     placeholder="duration">
+                                <small style="color: red">enter duration in minutes</small>
                             </div>
                             <div class="form-group">
                                 <label for="category">category</label>

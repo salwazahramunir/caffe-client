@@ -4,6 +4,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
 import { useMenuStore } from '@/stores/menuStore'
+import { useRoomStore } from '@/stores/roomStore'
 
 export default {
     props: ["trow", "action"],
@@ -32,6 +33,7 @@ export default {
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
         ...mapActions(useMenuStore, ["editMenuById", "showMenu", "deleteMenu"]),
+        ...mapActions(useRoomStore, ["editRoomById"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -40,6 +42,8 @@ export default {
                 this.editKitchenStoreById(this.trow.id)
             } else if (this.fullPath === "/menus") {
                 this.editMenuById(this.trow.id)
+            } else if (this.fullPath === "/rooms") {
+                this.editRoomById(this.trow.id)
             }
         },
         handleShow() {

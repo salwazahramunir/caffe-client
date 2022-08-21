@@ -113,6 +113,11 @@ const router = createRouter({
           name: 'createRoom',
           component: RoomForm
         },
+        {
+          path: 'rooms/:id',
+          name: 'editRoom',
+          component: RoomForm
+        },
       ]
     }
   ]
