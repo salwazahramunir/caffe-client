@@ -29,7 +29,7 @@ export default {
         ...mapActions(useUserStore, ["editUserById", "showUser", "deleteUser"]),
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
-        ...mapActions(useMenuStore, ["editMenuById"]),
+        ...mapActions(useMenuStore, ["editMenuById", "showMenu"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -45,6 +45,8 @@ export default {
                 this.showUser(this.trow.id)
             } else if (this.fullPath === "/raw-materials") {
                 this.showRawMaterial(this.trow.id)
+            } else if (this.fullPath === "/menus") {
+                this.showMenu(this.trow.id)
             }
         },
         handleDelete() {

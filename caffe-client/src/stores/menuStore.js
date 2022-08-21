@@ -115,5 +115,21 @@ export const useMenuStore = defineStore({
                 this.alertError(error)
             }
         },
+        async showMenu(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "GET",
+                    url: `/menus/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.menuById = data.menu
+                this.router.push({ name: "showMenu", params: { id }})
+            } catch (error) {
+                this.alertError(error)
+            }
+        },
     }
 })

@@ -166,7 +166,7 @@ export default {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="dose">Dose</label>
                                                 <input type="number" v-model="recipe.dose" id="dose" name="dose"
@@ -174,16 +174,18 @@ export default {
                                                 <small style="color: red">enter dose data in milliliters</small>
                                             </div>
                                         </div>
+                                        <div class="col-md-2 mt-4">
+                                            <button class="btn btn-danger remove btn-sm float-end"
+                                                @click.prevent="deleteMore(counter)" type="button"><i
+                                                    class="ti-trash"></i> Remove
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <button class="btn btn-success add-more btn-sm float-end" @click.prevent="addMore"
                                         type="button">
                                         <i class="glyphicon glyphicon-plus"></i> Add
                                     </button>
-                                    <button class="btn btn-danger remove btn-sm float-end"
-                                        @click.prevent="deleteMore(counter)" type="button"><i
-                                            class="glyphicon glyphicon-remove"></i>
-                                        Remove</button>
                                 </div>
                             </div>
                             <div class="form-group">
