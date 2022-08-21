@@ -1,0 +1,26 @@
+<script>
+import Table from '@/components/Table.vue'
+export default {
+    components: {
+        Table
+    }
+}
+</script>
+<template>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Room List</h4>
+                        <p class="card-description">
+                            Room List
+                        </p>
+
+                        <Table />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

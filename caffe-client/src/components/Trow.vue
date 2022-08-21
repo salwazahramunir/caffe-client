@@ -4,6 +4,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useKitchenStore } from '@/stores/kitchenStore'
 import { useRawMaterialStore } from '@/stores/rawMaterialStore'
 import { useMenuStore } from '@/stores/menuStore'
+import { useRoomStore } from '@/stores/roomStore'
 
 export default {
     props: ["trow", "action"],
@@ -22,6 +23,8 @@ export default {
                 return ["nameKitchenStore", "quantity", "souldOut"]
             } else if (this.fullPath === '/menus') {
                 return ["name", "price", "category", "isAvaiable"]
+            } else if (this.fullPath === '/rooms') {
+                return ["codeRoom", "nameRoom", "category", "isEmpty"]
             }
         }
     },
@@ -30,6 +33,7 @@ export default {
         ...mapActions(useKitchenStore, ["editKitchenStoreById", "deleteKitchenStore"]),
         ...mapActions(useRawMaterialStore, ["showRawMaterial"]),
         ...mapActions(useMenuStore, ["editMenuById", "showMenu", "deleteMenu"]),
+        ...mapActions(useRoomStore, ["editRoomById", "showRoom", "deleteRoom"]),
 
         handleEdit() {
             if (this.fullPath === "/users") {
@@ -38,6 +42,8 @@ export default {
                 this.editKitchenStoreById(this.trow.id)
             } else if (this.fullPath === "/menus") {
                 this.editMenuById(this.trow.id)
+            } else if (this.fullPath === "/rooms") {
+                this.editRoomById(this.trow.id)
             }
         },
         handleShow() {
@@ -47,6 +53,8 @@ export default {
                 this.showRawMaterial(this.trow.id)
             } else if (this.fullPath === "/menus") {
                 this.showMenu(this.trow.id)
+            } else if (this.fullPath === "/rooms") {
+                this.showRoom(this.trow.id)
             }
         },
         handleDelete() {
@@ -56,6 +64,8 @@ export default {
                 this.deleteKitchenStore(this.trow.id)
             } else if (this.fullPath === "/menus") {
                 this.deleteMenu(this.trow.id)
+            } else if (this.fullPath === "/rooms") {
+                this.deleteRoom(this.trow.id)
             }
         }
     },
