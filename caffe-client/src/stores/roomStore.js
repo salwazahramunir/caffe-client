@@ -132,5 +132,22 @@ export const useRoomStore = defineStore({
                 this.alertError(error)
             }
         },
+        async deleteRoom(id) {
+            try {
+                const { data } = await axiosInstance({
+                    method: "DELETE",
+                    url: `/rooms/${id}`,
+                    headers: {
+                        access_token: localStorage.access_token
+                    }
+                })
+
+                this.router.push({ name: "rooms" })
+                this.readAllRoom()
+                this.alertSuccess(data)
+            } catch (error) {
+                this.alertError(error)
+            }
+        }
     }
 })
